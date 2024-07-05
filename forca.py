@@ -5,7 +5,7 @@ def jogar():
     print("*********************************")
     arquivo_palavras=open("palavras.txt")
     palavras=arquivo_palavras.read().split("\n")
-    palavra_secreta=palavras[random.randint(0, len(palavras)-1)].upper().replace("\n", "").replace("\r", "")
+    palavra_secreta=palavras[random.randrange(0, len(palavras))].upper().replace("\n", "").replace("\r", "")
     letras_acertadas=["_" for letra in palavra_secreta]
     erros=0
     while(True):
