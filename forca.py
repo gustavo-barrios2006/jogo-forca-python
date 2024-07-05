@@ -1,11 +1,12 @@
+import random
 def jogar():
     print("*********************************")
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
-    palavra_secreta="BANANA"
-    acertou=False
-    enforcou=False
-    letras_acertadas=["_", "_", "_", "_", "_", "_"]
+    arquivo_palavras=open("palavras.txt")
+    palavras=arquivo_palavras.read().split("\n")
+    palavra_secreta=palavras[random.randint(0, len(palavras)-1)].upper().replace("\n", "").replace("\r", "")
+    letras_acertadas=["_" for letra in palavra_secreta]
     erros=0
     while(True):
         chute=input("Digite uma letra").strip().upper()
