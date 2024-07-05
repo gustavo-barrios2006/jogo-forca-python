@@ -16,6 +16,8 @@ def jogar():
                 print("Encontrei a letra {} na posição {}".format(letra, indice+1))
             else:
                 erros+=1
+                if(erros<6):
+                    print("Você ainda tem {} erros permitidos antes de ser enforcado".format(6-erros))
             indice+=1
         print(letras_acertadas)
         enforcou=erros==6
