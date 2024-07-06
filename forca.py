@@ -1,12 +1,17 @@
-import random
+import random, sys
 def imprime_mensagem_abertura():
     print("*********************************")
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
-def carrega_palavra_secreta():
-    arquivo_palavras=open("palavras.txt")
+def carrega_palavra_secreta(nome_arquivo="palavras.txt", primeira_linha_valida=0):
+    arquivo_palavras=open(nome_arquivo)
     palavras=arquivo_palavras.read().split("\n")
-    palavra_secreta=palavras[random.randrange(0, len(palavras))].upper().replace("\n", "").replace("\r", "")
+    try:
+        if(primeira_linha_valida<0 or primeira_linha_valida>len(palavras)):
+            raise ValueError("Índice inválido para a primeira palavra secreta")
+    except ValueError as e:
+        print("Erro: ", e, file=sys.stderr)
+    palavra_secreta=palavras[random.randrange(primeira_linha_valida-1, len(palavras))].upper().replace("\n", "").replace("\r", "")
     return palavra_secreta
 def inicializa_letras_acertadas(palavra_secreta):
     return ["_" for letra in palavra_secreta]
